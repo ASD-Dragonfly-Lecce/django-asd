@@ -1,0 +1,9 @@
+{% extends "persone/base.html" %}
+{% block title %}{{ persona.cognome }} {{ persona.nome }}{% endblock %}
+{% block content %}
+<h1>{{ persona.cognome }} {{ persona.nome }}</h1>
+<p class="date">
+Published {{ persona.datanascita }}
+</p>
+{{ persona.note|linebreaks }}
+{% endblock %}

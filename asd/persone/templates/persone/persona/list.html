@@ -1,0 +1,16 @@
+{% extends "persone/base.html" %}
+{% block title %}My Blog{% endblock %}
+{% block content %}
+<h1>My Blog</h1>
+{% for persona in persone %}
+<h2>
+<a href="{{ persona.get_absolute_url }}">
+{{ persona.cognome }} {{ persona.nome }}
+</a>
+</h2>
+<p class="date">
+Published {{ persona.datanascita }}
+</p>
+{{ persona.note|truncatewords:30|linebreaks }}
+{% endfor %}
+{% endblock %}
