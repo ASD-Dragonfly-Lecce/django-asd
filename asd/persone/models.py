@@ -2,6 +2,14 @@ from django.db import models
 from django.utils import timezone
 from django.contrib.auth.models import User
 
+
+class AttivoManager(models.Manager):
+    def get_queryset(self):
+        return super(AttivoManager,
+                     self).get_queryset()\
+                        .filter(stato='attivo')
+
+
 class Persona(models.Model):
     STATUS_CHOICES = (
         ('disattivo', 'Disattivo'),
@@ -40,3 +48,6 @@ class Persona(models.Model):
 
     def __str__(self):
         return f"{self.cognome} {self.nome}"
+    
+    objects = models.Manager()
+    attivo = AttivoManager()
