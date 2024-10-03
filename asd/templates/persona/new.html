@@ -1,0 +1,10 @@
+{% extends "_base.html" %}
+{% block title %}Iscrizione{% endblock %}
+{% block content %}
+<h1>Iscriviti</h1>
+<form method="post">
+{{ form.as_div }}
+{% csrf_token %}
+<input type="submit" value="Iscriviti">
+</form>
+{% endblock %}
