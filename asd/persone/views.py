@@ -1,6 +1,14 @@
 from django.shortcuts import render, get_object_or_404
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+from django.views.generic import ListView
 from .models import Persona
+
+
+class PersonaListView(ListView):
+    queryset = Persona.attivo.all()
+    context_object_name = 'persone'
+    paginate_by = 1
+    template_name = 'persone/persona/list.html'
 
 
 def persona_list(request):

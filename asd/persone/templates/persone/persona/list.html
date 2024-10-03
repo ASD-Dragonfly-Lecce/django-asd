@@ -13,5 +13,5 @@ Published {{ persona.datanascita }}
 </p>
 {{ persona.note|truncatewords:30|linebreaks }}
 {% endfor %}
-{% include "pagination.html" with page=persone %}
+{% include "pagination.html" with page=page_obj %}
 {% endblock %}
