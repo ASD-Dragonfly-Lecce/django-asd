@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% block title %}Timbratura{% endblock %}
+{% block contenttitle %}Timbratura{% endblock %}
+{% block content %}
+<form method="post">
+{% csrf_token %}
+<div class="flex flex-row">
+    <button type="submit" name="categoria" value="Ingresso" class="basis-1/2 block shrink-0 border border-emerald-600 bg-emerald-600 px-12 py-3 text-sm font-medium text-white transition hover:bg-transparent hover:text-emerald-600 focus:outline-none focus:ring active:text-blue-500 dark:hover:bg-blue-700 dark:hover:text-white">INGRESSO</button>
+    <button type="submit" name="categoria" value="Uscita" class="basis-1/2 block shrink-0 border border-rose-600 bg-rose-600 px-12 py-3 text-sm font-medium text-white transition hover:bg-transparent hover:text-rose-600 focus:outline-none focus:ring active:text-blue-500 dark:hover:bg-blue-700 dark:hover:text-white">USCITA</button>
+</div>
+</form>
+
+<ul>
+    {% for timbratura in timbrature_odierne %}
+    <li>{{ timbratura }}</li>
+    {% endfor %}
+</ul>
+{% endblock %}
