@@ -2,13 +2,45 @@ from django.db import models
 from django.utils import timezone
 from django.contrib.auth.models import User
 from django.urls import reverse
+from datetime import date
+
+class OdiernoManager(models.Manager):
+    def get_queryset(self):
+        return super(OdiernoManager,
+                     self).get_queryset()\
+                        .filter(creato_il__startswith=date.today())
+
+
+class Timbratura(models.Model):
+    CATEGORIA_CHOICES = (
+        ('Ingresso', 'Ingresso'),
+        ('Uscita', 'Uscita'),
+    )
+
+    categoria = models.CharField(max_length=16, choices=CATEGORIA_CHOICES, default='Ingresso')
+    note = models.TextField(null=True, blank=True)
+    creato_il = models.DateTimeField(auto_now_add=True)
+    modificato_il = models.DateTimeField(auto_now=True)
+    utente = models.ForeignKey(User,
+                               on_delete=models.CASCADE,
+                               related_name='timbrature')
+    class Meta:
+        ordering = ('-creato_il',)
+
+    def __str__(self):
+        creato_il = self.creato_il.strftime("%d/%m/%Y %H:%M")
+        return f"{creato_il} - {self.categoria}"
+    
+    objects = models.Manager()
+    odierne = OdiernoManager()
+
 
 class AttivoManager(models.Manager):
     def get_queryset(self):
         return super(AttivoManager,
                      self).get_queryset()\
                         .filter(stato='attivo')
-
+    
 
 class Persona(models.Model):
     STATUS_CHOICES = (
