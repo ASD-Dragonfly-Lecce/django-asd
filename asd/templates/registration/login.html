@@ -1,21 +1,25 @@
 {% extends "base.html" %}
-{% block title %}Log-in{% endblock %}
+{% block title %}Accesso{% endblock %}
 {% block content %}
-<h1>Log-in</h1>
+<div class="mb-4">
 {% if form.errors %}
-<p>
-Your username and password didn't match.
-Please try again.
-</p>
+    <p>Your username and password didn't match. Please try again.</p>
 {% else %}
-<p>Please, use the following form to log-in:</p>
+    <p>Inserisci i tuoi dati di accesso:</p>
 {% endif %}
+</div>
 <div class="login-form">
-<form action="{% url 'login' %}" method="post">
-{{ form.as_p }}
-{% csrf_token %}
-<input type="hidden" name="next" value="{{ next }}" />
-<p><input type="submit" value="Log-in"></p>
-</form>
+    <form action="{% url 'login' %}" method="post">
+
+        {% for fm in form %}
+        <div class="mb-6">
+            <label class="block text-sm font-medium text-gray-700 dark:text-gray-200">{{fm.label}}</label>
+            <div>{{fm}}</div>
+        </div>
+        {% endfor %}
+        {% csrf_token %}
+        <input type="hidden" name="next" value="{{ next }}" />
+        <div><input type="submit" value="Accedi" class="inline-block shrink-0 rounded-md border border-blue-600 bg-blue-600 px-12 py-3 text-sm font-medium text-white transition hover:bg-transparent hover:text-blue-600 focus:outline-none focus:ring active:text-blue-500 dark:hover:bg-blue-700 dark:hover:text-white"></div>
+    </form>
 </div>
 {% endblock %}
