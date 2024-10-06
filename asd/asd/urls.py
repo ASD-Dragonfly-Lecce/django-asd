@@ -22,5 +22,6 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('account/', include('account.urls')),
     path('persone/', include('persone.urls', namespace='persone')),
+    path('pagamenti/', include('pagamenti.urls', namespace='pagamenti')),
     path('', index, name='index')
 ]
