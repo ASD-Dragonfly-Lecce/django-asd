@@ -71,6 +71,7 @@ class Persona(models.Model):
     creato_il = models.DateTimeField(auto_now_add=True)
     modificato_il = models.DateTimeField(auto_now=True)
     note = models.TextField(null=True, blank=True)
+    volontario = models.BooleanField(default=False)
     creatore = models.ForeignKey(User,
                                  on_delete=models.CASCADE,
                                  related_name='persone')
