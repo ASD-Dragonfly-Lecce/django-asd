@@ -71,8 +71,12 @@ class Persona(models.Model):
     creato_il = models.DateTimeField(auto_now_add=True)
     modificato_il = models.DateTimeField(auto_now=True)
     note = models.TextField(null=True, blank=True)
+<<<<<<< HEAD
     volontario  = models.BooleanField(default=False, blank=True)
     certmedico_scadenza = models.DateField(null=True, blank=True)
+=======
+    volontario = models.BooleanField(default=False)
+>>>>>>> 465b8cd697b5c73ad09c7b4005032dd2218c6734
     creatore = models.ForeignKey(User,
                                  on_delete=models.CASCADE,
                                  related_name='persone')
