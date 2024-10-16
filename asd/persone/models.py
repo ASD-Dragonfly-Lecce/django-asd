@@ -71,6 +71,8 @@ class Persona(models.Model):
     creato_il = models.DateTimeField(auto_now_add=True)
     modificato_il = models.DateTimeField(auto_now=True)
     note = models.TextField(null=True, blank=True)
+    volontario  = models.BooleanField(default=False, blank=True)
+    certmedico_scadenza = models.DateField(null=True, blank=True)
     creatore = models.ForeignKey(User,
                                  on_delete=models.CASCADE,
                                  related_name='persone')
@@ -87,3 +89,14 @@ class Persona(models.Model):
     def get_absolute_url(self):
         return reverse('persone:persona_detail',
                        args=[self.id])
+
+
+class Allegato(models.Model):
+    filename = models.CharField(max_length=255, blank=True, null=True)
+    filehash = models.CharField(max_length=255, blank=True, null=True)
+    creato_il = models.DateTimeField(auto_now_add=True)
+    modificato_il = models.DateTimeField(auto_now=True)
+    persona = models.ForeignKey(Persona,
+                                 on_delete=models.CASCADE,
+                                 related_name='allegati')
+
