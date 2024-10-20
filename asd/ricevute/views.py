@@ -1,3 +1,17 @@
-from django.shortcuts import render
+import io
+from django.http import FileResponse
+from reportlab.pdfgen import canvas
 
-# Create your views here.
+
+def prova(request):
+    buffer = io.BytesIO()
+
+    p = canvas.Canvas(buffer)
+
+    p.drawString(0, 0, "Hello World")
+
+    p.showPage()
+    p.save()
+
+    buffer.seek(0)
+    return FileResponse(buffer, as_attachment=True, filename="Hello.pdf")
