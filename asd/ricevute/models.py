@@ -22,6 +22,7 @@ class Ricevuta(models.Model):
                                on_delete=models.CASCADE)
     class Meta:
         ordering = ('numero',)
+        verbose_name_plural = "ricevute"
 
     def __str__(self):
         creato_il = self.creato_il.strftime("%d/%m/%Y %H:%M")

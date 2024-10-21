@@ -55,6 +55,7 @@ class Persona(models.Model):
     stato = models.CharField(max_length=16, choices=STATUS_CHOICES, default='attivo')
     nome = models.CharField(max_length=128)
     cognome = models.CharField(max_length=128)
+    attivita = models.CharField(max_length=32, blank=True, null=True)
     sesso = models.CharField(max_length=2, choices=SESSO_CHOICES, default='m')
     datanascita = models.DateField(null=True, blank=True)
     comunenascita = models.CharField(max_length=128, null=True, blank=True)
@@ -71,18 +72,17 @@ class Persona(models.Model):
     creato_il = models.DateTimeField(auto_now_add=True)
     modificato_il = models.DateTimeField(auto_now=True)
     note = models.TextField(null=True, blank=True)
-<<<<<<< HEAD
     volontario  = models.BooleanField(default=False, blank=True)
     certmedico_scadenza = models.DateField(null=True, blank=True)
-=======
-    volontario = models.BooleanField(default=False)
->>>>>>> 465b8cd697b5c73ad09c7b4005032dd2218c6734
+    tutore1 = models.ForeignKey('self', on_delete=models.SET_NULL, null=True, blank=True, related_name='tutore1_persona')
+    tutore2 = models.ForeignKey('self', on_delete=models.SET_NULL, null=True, blank=True, related_name='tutore2_persona')
     creatore = models.ForeignKey(User,
                                  on_delete=models.CASCADE,
                                  related_name='persone')
 
     class Meta:
         ordering = ('cognome',)
+        verbose_name_plural = "persone"
 
     def __str__(self):
         return f"{self.cognome} {self.nome}"
