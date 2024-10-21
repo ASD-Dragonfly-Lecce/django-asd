@@ -23,5 +23,6 @@ urlpatterns = [
     path('account/', include('account.urls')),
     path('persone/', include('persone.urls', namespace='persone')),
     path('pagamenti/', include('pagamenti.urls', namespace='pagamenti')),
+    path('ricevute/', include('ricevute.urls', namespace='ricevute')),
     path('', index, name='index')
 ]
