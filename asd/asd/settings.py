@@ -34,6 +34,7 @@ ALLOWED_HOSTS = ['*']
 INSTALLED_APPS = [
     'account.apps.AccountConfig',
     'ricevute.apps.RicevuteConfig',
+    'notizie.apps.NotizieConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
